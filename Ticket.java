@@ -12,4 +12,11 @@ public class Ticket {
         this.seatPos = seatPos;
         this.ticketID = ticketID;
     }
+
+    void printInfo(){
+        System.out.println(firstName+" "+lastName);
+        System.out.println(email);
+        System.out.println(seatPos);
+        System.out.println(ticketID);
+    }
 }
