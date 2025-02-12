@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/* mysql imports */
+import java.sql.*;
+
 /* our own imports */
 import Seating.*;
 
