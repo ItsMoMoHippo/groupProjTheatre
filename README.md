@@ -1,6 +1,5 @@
 # The Box Office Code Repo
 
----
 > ### Intro
 > - Welcome to the repository off the Box Office group 7, if you have any issues, please file an issue
 > - If you are a part of the group, and want to help develop please:
