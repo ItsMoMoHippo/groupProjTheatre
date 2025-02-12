@@ -9,7 +9,7 @@ public class Ticket {
   String event;
   double price;
 
-  /*
+  /**
    * Default constructor that gives test information
    */
   public Ticket() {
@@ -22,22 +22,17 @@ public class Ticket {
     this.price = 0.0;
   }
 
-  /*
+  /**
    * Constructs Tickets with given parameters
    * 
-   * @param id is the ticket id
-   * 
-   * @param seat the seat for the ticket
-   * 
-   * @param firstName forename of customer
-   * 
-   * @param lastName surname of customer
-   * 
-   * @param email the associated email of the customer
-   * 
-   * @param event the event the ticket is for
-   * 
-   * @param price the price of the ticket, is discounted for restrictedView seat
+   * @param id        the ticket id
+   * @param seat      the seat for the ticket
+   * @param firstName the forename of customer
+   * @param lastName  the surname of customer
+   * @param email     the associated email of the customer
+   * @param event     the event the ticket is for
+   * @param price     the price of the ticket (discount applied if the seat
+   *                  view is restricted)
    */
   public Ticket(String id, Seat seat, String firstName, String lastName, String email, String event, double price) {
     this.ID = id;
@@ -54,7 +49,7 @@ public class Ticket {
     }
   }
 
-  /*
+  /**
    * prints information of a ticket
    */
   public void printTicket() {
