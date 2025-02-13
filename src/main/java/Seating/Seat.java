@@ -1,8 +1,8 @@
 package Seating;
 
 public class Seat {
-  String position;
-  boolean restrictedView;
+  private String position;
+  private boolean restrictedView;
 
   /**
    * Test constructor
@@ -26,9 +26,23 @@ public class Seat {
 
   /**
    * prints seat information
-   * */
-  public void printSeat(){
+   */
+  public void printSeat() {
     System.out.println(position);
     System.out.println(restrictedView);
+  }
+
+  /**
+   * @return restrictedView
+   */
+  public boolean returnRestrictedView() {
+    return restrictedView;
+  }
+
+  /**
+   * prints info
+   */
+  public void printInfo() {
+    System.out.println("{"+position + ", " + restrictedView+"}");
   }
 }

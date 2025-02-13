@@ -1,13 +1,13 @@
 package Seating;
 
 public class Ticket {
-  String ID;
-  Seat seat;
-  String firstName;
-  String lastName;
-  String email;
-  String event;
-  double price;
+  private String ID;
+  private Seat seat;
+  private String firstName;
+  private String lastName;
+  private String email;
+  private String event;
+  private double price;
 
   /**
    * Default constructor that gives test information
@@ -42,7 +42,7 @@ public class Ticket {
     this.email = email;
     this.event = event;
     // apply discount if seat has restrictedView
-    if (seat.restrictedView == true) {
+    if (seat.returnRestrictedView() == true) {
       this.price = (price) * (0.7);
     } else {
       this.price = price;
@@ -54,7 +54,7 @@ public class Ticket {
    */
   public void printTicket() {
     System.out.println(ID);
-    System.out.println("{" + seat.position + "," + seat.restrictedView + "}");
+    seat.printInfo();
     System.out.println(firstName + " " + lastName);
     System.out.println(email);
     System.out.println(event);

@@ -12,6 +12,7 @@ import java.sql.*;
 
 /* our own imports */
 import Seating.*;
+//import DBIntegration.*;
 
 public class App extends Application {
   @Override
@@ -26,8 +27,14 @@ public class App extends Application {
   }
 
   public static void main(String[] args) {
-    Ticket ticket = new Ticket("oasndk", new Seat("123a", false), "ski", "buddy", "skibidi@email.com", "carson", 10.2);
+    // tests
+    Seat seat = new Seat();
+    seat.printInfo();
+    System.out.println("");
+    Ticket ticket = new Ticket();
     ticket.printTicket();
+
+    // MySQLConnector sqlConnector = new MySQLConnector();
     launch(args);
   }
 }
