@@ -1,4 +1,4 @@
 package ExternalTeamsInterface;
-
-public class ExternalTeamConnector implements ExternalTeamsInterface {
-}
+// TODO: implement
+//public class ExternalTeamConnector implements ExternalTeamsInterface {
+//}

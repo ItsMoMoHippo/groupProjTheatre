@@ -30,7 +30,7 @@ public class App extends Application {
     // tests
     Seat seat = new Seat();
     seat.printInfo();
-    System.out.println("");
+    System.out.println();
     Ticket ticket = new Ticket();
     ticket.printTicket();
 

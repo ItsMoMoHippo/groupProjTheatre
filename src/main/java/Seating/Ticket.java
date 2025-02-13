@@ -42,7 +42,7 @@ public class Ticket {
     this.email = email;
     this.event = event;
     // apply discount if seat has restrictedView
-    if (seat.returnRestrictedView() == true) {
+    if (seat.returnRestrictedView()) {
       this.price = (price) * (0.7);
     } else {
       this.price = price;

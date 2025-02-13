@@ -1,35 +1,31 @@
 package Seating;
 
 public class Seat {
-  private String position;
-  private boolean restrictedView;
+  private final char row;
+  private final int number;
+  private final boolean restrictedView;
 
   /**
    * Test constructor
    */
   public Seat() {
-    this.position = "A1";
+    this.row = 'A';
+    this.number = 1;
     this.restrictedView = false;
   }
 
   /**
    * Actual Constructor
    *
-   * @param position       the position where the seat is in the venue
+   * @param row            the row for the seat
+   * @param number         the seat number in a row
    * @param restrictedView the seat has a restricted view (will have a discount
    *                       applied)
    */
-  public Seat(String position, boolean restrictedView) {
-    this.position = position;
+  public Seat(char row, int number, boolean restrictedView) {
+    this.row = row;
+    this.number = number;
     this.restrictedView = restrictedView;
-  }
-
-  /**
-   * prints seat information
-   */
-  public void printSeat() {
-    System.out.println(position);
-    System.out.println(restrictedView);
   }
 
   /**
@@ -43,6 +39,6 @@ public class Seat {
    * prints info
    */
   public void printInfo() {
-    System.out.println("{"+position + ", " + restrictedView+"}");
+    System.out.println("{" + row + number + ", " + restrictedView + "}");
   }
 }

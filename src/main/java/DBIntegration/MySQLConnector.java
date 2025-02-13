@@ -10,12 +10,11 @@ public class MySQLConnector implements MySQLInterface {
 
   String url = "jdbc:mysql://https://smcse.city.ac.uk/phpmyadmin/"; // database url
   boolean connected = false;
-  Connection con;
 
   @Override
   public void connectToDatabase(String username, String password) throws SQLException {
     while (!connected) {
-      try (con = DriverManager.getConnection(url, username, password)) {
+      try (Connection con = DriverManager.getConnection(url, username, password)) {
         connected = true;
       } catch (SQLException e) {
         e.printStackTrace();
@@ -23,7 +22,8 @@ public class MySQLConnector implements MySQLInterface {
     }
     System.out.println("connected to db");
   }
-
+  //TODO: implement
+  /*
   @Override
   public void queryDatabase() throws SQLException {
     connectToDatabase("john", "password123");
@@ -37,7 +37,7 @@ public class MySQLConnector implements MySQLInterface {
       }
     }
 
-  }
+  }*/
 
   @Override
   public void connectToAndQueryDatabase(String username, String password) throws SQLException {
