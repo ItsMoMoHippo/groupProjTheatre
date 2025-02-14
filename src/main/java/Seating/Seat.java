@@ -6,7 +6,7 @@ public class Seat {
   private final boolean restrictedView;
 
   /**
-   * Test constructor
+   * Test Constructor
    */
   public Seat() {
     this.row = 'A';
@@ -15,7 +15,7 @@ public class Seat {
   }
 
   /**
-   * Actual Constructor
+   * Constructor
    *
    * @param row            the row for the seat
    * @param number         the seat number in a row

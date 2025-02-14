@@ -1,16 +1,16 @@
 package Seating;
 
 public class Ticket {
-  private String ID;
-  private Seat seat;
-  private String firstName;
-  private String lastName;
-  private String email;
-  private String event;
-  private double price;
+  private final String ID;
+  private final Seat seat;
+  private final String firstName;
+  private final String lastName;
+  private final String email;
+  private final Show show;
+  private final double price;
 
   /**
-   * Default constructor that gives test information
+   * Test Constructor
    */
   public Ticket() {
     this.ID = "ID123";
@@ -18,7 +18,7 @@ public class Ticket {
     this.firstName = "john";
     this.lastName = "doe";
     this.email = "johndoe@email.com";
-    this.event = "event123";
+    this.show = new Show();
     this.price = 0.0;
   }
 
@@ -30,17 +30,18 @@ public class Ticket {
    * @param firstName the forename of customer
    * @param lastName  the surname of customer
    * @param email     the associated email of the customer
-   * @param event     the event the ticket is for
+   * @param show      the show for the ticket (date and what show)
    * @param price     the price of the ticket (discount applied if the seat
    *                  view is restricted)
    */
-  public Ticket(String id, Seat seat, String firstName, String lastName, String email, String event, double price) {
+  public Ticket(String id, Seat seat, String firstName, String lastName, String email, String dateOfShow, String show,
+      double price) {
     this.ID = id;
     this.seat = seat;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.event = event;
+    this.show = new Show(dateOfShow, show);
     // apply discount if seat has restrictedView
     if (seat.returnRestrictedView()) {
       this.price = (price) * (0.7);
@@ -57,7 +58,7 @@ public class Ticket {
     seat.printInfo();
     System.out.println(firstName + " " + lastName);
     System.out.println(email);
-    System.out.println(event);
+    show.printInfo();
     System.out.println(price);
   }
 }
