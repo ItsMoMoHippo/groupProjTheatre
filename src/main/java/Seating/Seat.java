@@ -29,6 +29,20 @@ public class Seat {
   }
 
   /**
+   * @return row
+   */
+  public char returnRow() {
+    return row;
+  }
+
+  /**
+   * @return number
+   */
+  public int returnNumber() {
+    return number;
+  }
+
+  /**
    * @return restrictedView
    */
   public boolean returnRestrictedView() {

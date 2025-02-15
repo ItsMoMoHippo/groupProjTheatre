@@ -8,6 +8,7 @@ public class Ticket {
   private final String email;
   private final Show show;
   private final double price;
+  private final String datePurchased;
 
   /**
    * Test Constructor
@@ -20,22 +21,25 @@ public class Ticket {
     this.email = "johndoe@email.com";
     this.show = new Show();
     this.price = 0.0;
+    this.datePurchased = "01/01/1970";
   }
 
   /**
    * Constructs Tickets with given parameters
    * 
-   * @param id        the ticket id
-   * @param seat      the seat for the ticket
-   * @param firstName the forename of customer
-   * @param lastName  the surname of customer
-   * @param email     the associated email of the customer
-   * @param show      the show for the ticket (date and what show)
-   * @param price     the price of the ticket (discount applied if the seat
-   *                  view is restricted)
+   * @param id            the ticket id
+   * @param seat          the seat for the ticket
+   * @param firstName     the forename of customer
+   * @param lastName      the surname of customer
+   * @param email         the associated email of the customer
+   * @param show          the show for the ticket (date and what show)
+   * @param price         the price of the ticket (discount applied if the seat
+   *                      view is restricted)
+   * @param datePurchased the date the ticket is purchased (differing to show
+   *                      date)
    */
   public Ticket(String id, Seat seat, String firstName, String lastName, String email, String dateOfShow, String show,
-      double price) {
+      double price, String datePurchased) {
     this.ID = id;
     this.seat = seat;
     this.firstName = firstName;
@@ -48,6 +52,63 @@ public class Ticket {
     } else {
       this.price = price;
     }
+    this.datePurchased = datePurchased;
+  }
+
+  /**
+   * @return ID
+   * */
+  public String returnID(){
+    return ID;
+  }
+
+  /**
+   * @return seat
+   * */
+  public Seat returnSeat(){
+    return seat;
+  }
+
+  /**
+   * @return firstName
+   * */
+  public String returnFirstName(){
+    return firstName;
+  }
+
+  /**
+   * @return lastName
+   * */
+  public String returnLastName(){
+    return lastName;
+  }
+
+  /**
+   * @return email
+   * */
+  public String returnEmail(){
+    return email;
+  }
+
+  /**
+   * @return show
+   * */
+  public Show returnShow(){
+    return show;
+  }
+
+  /**
+   * @return price
+   * */
+  public double returnPrice(){
+    return price;
+  }
+
+  /**
+   * @return firstName
+   * */
+  public String returnDatePurchased(){
+    return datePurchased;
   }
 
   /**
@@ -60,5 +121,6 @@ public class Ticket {
     System.out.println(email);
     show.printInfo();
     System.out.println(price);
+    System.out.println(datePurchased);
   }
 }

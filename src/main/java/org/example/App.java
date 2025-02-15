@@ -27,14 +27,9 @@ public class App extends Application {
   }
 
   public static void main(String[] args) {
-    // tests
-    Seat seat = new Seat();
-    seat.printInfo();
-    System.out.println();
-    Ticket ticket = new Ticket();
-    ticket.printTicket();
 
     // MySQLConnector sqlConnector = new MySQLConnector();
     launch(args);
   }
+
 }

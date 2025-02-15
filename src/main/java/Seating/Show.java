@@ -24,6 +24,20 @@ public class Show {
   }
 
   /**
+   * @return date
+   */
+  public String getDate() {
+    return date;
+  }
+
+  /**
+   * @return show
+   */
+  public String getShow() {
+    return show;
+  }
+
+  /**
    * Prints the info of a Show
    */
   public void printInfo() {
