@@ -12,9 +12,9 @@ public class MySQLConnector implements MySQLInterface {
   boolean connected = false;
 
   @Override
-  public void connectToDatabase(String username, String password) throws SQLException {
+  public void connectToDatabase() throws SQLException {
     while (!connected) {
-      try (Connection con = DriverManager.getConnection(url, username, password)) {
+      try (Connection con = DriverManager.getConnection(url, "in2033t07_d", "EdrqGxHNAck")) {
         connected = true;
       } catch (SQLException e) {
         e.printStackTrace();
@@ -40,9 +40,9 @@ public class MySQLConnector implements MySQLInterface {
   }*/
 
   @Override
-  public void connectToAndQueryDatabase(String username, String password) throws SQLException {
+  public void connectToAndQueryDatabase() throws SQLException {
 
-    try (Connection con = DriverManager.getConnection(url, username, password);
+    try (Connection con = DriverManager.getConnection(url, "in2033t07_d", "EdrqGxHNAck");
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT a, b, c FROM Table1")) {
 
