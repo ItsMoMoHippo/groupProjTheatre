@@ -1,60 +1,84 @@
 package DBIntegration;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class MySQLConnector implements MySQLInterface {
 
-  String url = "jdbc:mysql://https://smcse.city.ac.uk/phpmyadmin/"; // database url
-  boolean connected = false;
+  private String url;
+  private String username;
+  private String password;
+  private Connection connection;
 
-  @Override
-  public void connectToDatabase(String username, String password) throws SQLException {
-    while (!connected) {
-      try (Connection con = DriverManager.getConnection(url, username, password)) {
-        connected = true;
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    }
-    System.out.println("connected to db");
+  /**
+   * JDBC mySQL connector Constructor
+   * 
+   * @param host     the name of the host
+   * @param port     the port the database is open to
+   * @param database the database to be connected to
+   * @param username the username for database access
+   * @param password the password for database access
+   */
+  public MySQLConnector(String host, int port, String database, String username, String password) {
+    this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+    this.username = username;
+    this.password = password;
   }
-  //TODO: implement
-  /*
+
+  /**
+   * Tries to connect to the server
+   */
   @Override
-  public void queryDatabase() throws SQLException {
-    connectToDatabase("john", "password123");
-    try (Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT a, b, c FROM Table1")) {
-      while (rs.next()) {
-        int x = rs.getInt("a");
-        String s = rs.getString("b");
-        float f = rs.getFloat("c");
-        System.out.println("a: " + x + ", b: " + s + ", c: " + f);
-      }
+  public void connect() throws SQLException {
+    if (connection == null || connection.isClosed()) {
+      connection = DriverManager.getConnection(url, username, password);
+      System.out.println("Connected to databse.");
     }
+  }
 
-  }*/
-
+  /**
+   * Executes a given query
+   *
+   * @param query      the query sent to the database
+   * @return ResultSet the resulting data returned
+   */
   @Override
-  public void connectToAndQueryDatabase(String username, String password) throws SQLException {
+  public ResultSet executeQuery(String query) throws SQLException {
+    if (connection == null || connection.isClosed()) {
+      throw new SQLException("Database not connected.");
+    }
+    Statement stmt = connection.createStatement();
+    return stmt.executeQuery(query);
+  }
 
-    try (Connection con = DriverManager.getConnection(url, username, password);
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT a, b, c FROM Table1")) {
+  /**
+   * Updates the database
+   *
+   * @param query the update to the database
+   * @return int the number of affected rows
+   */
+  @Override
+  public int executeUpdate(String query) throws SQLException {
+    if (connection == null || connection.isClosed()) {
+      throw new SQLException("Database not connected.");
+    }
+    try (Statement stmt = connection.createStatement()) {
+      return stmt.executeUpdate(query);
+    }
+  }
 
-      while (rs.next()) {
-        int x = rs.getInt("a");
-        String s = rs.getString("b");
-        float f = rs.getFloat("c");
-        System.out.println("a: " + x + ", b: " + s + ", c: " + f);
+  /**
+   * Closes the database connection
+   */
+  @Override
+  public void close() {
+    try {
+      if (connection != null && !connection.isClosed()) {
+        connection.close();
+        System.out.println("Database connection closed.");
       }
-
     } catch (SQLException e) {
-      e.printStackTrace(); // Log the error properly in production
+      e.printStackTrace();
     }
   }
+
 }

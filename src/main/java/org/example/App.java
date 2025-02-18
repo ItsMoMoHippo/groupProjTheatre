@@ -7,12 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 /* mysql imports */
-import java.sql.*;
 
 /* our own imports */
+import DBIntegration.*;
 import Seating.*;
-//import DBIntegration.*;
 
 public class App extends Application {
   @Override
@@ -28,7 +29,17 @@ public class App extends Application {
 
   public static void main(String[] args) {
 
-    // MySQLConnector sqlConnector = new MySQLConnector();
+    // Connection with Admin creds
+    MySQLConnector db = new MySQLConnector("sst-stuproj.city.ac.uk", 3306, "in2033t07", "in2033t07_a", "Uys45GIFOX8");
+
+    try {
+      db.connect();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      db.close();
+    }
+
     launch(args);
   }
 

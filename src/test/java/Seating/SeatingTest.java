@@ -2,8 +2,6 @@ package Seating;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 public class SeatingTest {
 
@@ -62,19 +60,19 @@ public class SeatingTest {
 
   @Test
   void testTicketParameterisedConstructor(){
-    Ticket ticket = new Ticket("1d0ij",new Seat('F',7,false),"Dave","Jones","DaveJones@email.com","15/02/2025","Hamlet",10.5,"10/02/2025");
+    Ticket ticket = new Ticket("1d0ij",new Seat('F',7,true),"Dave","Jones","DaveJones@email.com","15/02/2025","Hamlet",10.0,"10/02/2025");
     assertEquals("1d0ij",ticket.returnID());
     assertNotNull(ticket.returnSeat());
     assertEquals('F',ticket.returnSeat().returnRow());
     assertEquals(7,ticket.returnSeat().returnNumber());
-    assertEquals(false,ticket.returnSeat().returnRestrictedView());
+    assertEquals(true,ticket.returnSeat().returnRestrictedView());
     assertEquals("Dave",ticket.returnFirstName());
     assertEquals("Jones",ticket.returnLastName());
     assertEquals("DaveJones@email.com",ticket.returnEmail());
     assertNotNull(ticket.returnShow());
     assertEquals("15/02/2025",ticket.returnShow().getDate());
     assertEquals("Hamlet",ticket.returnShow().getShow());
-    assertEquals(10.5,ticket.returnPrice());
+    assertEquals(7.00,ticket.returnPrice());
     assertEquals("10/02/2025",ticket.returnDatePurchased());
   }
 }
