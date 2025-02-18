@@ -1,5 +1,9 @@
 package DBIntegration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.sql.*;
 
 public class MySQLConnector implements MySQLInterface {
@@ -65,6 +69,33 @@ public class MySQLConnector implements MySQLInterface {
       return stmt.executeUpdate(query);
     }
   }
+
+  /**
+   * Returns query as a JSON
+   *
+   * @param rs query result
+   * @return JSON
+   */
+  @Override
+  public ArrayNode resultSetToJson(ResultSet rs) throws SQLException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    ArrayNode arrayNode = objectMapper.createArrayNode(); // Use instance to create array
+    ResultSetMetaData metaData = rs.getMetaData();
+    int columnCount = metaData.getColumnCount();
+
+    while (rs.next()) {
+      ObjectNode objectNode = objectMapper.createObjectNode();
+      for (int i = 1; i <= columnCount; i++) {
+        String columnName = metaData.getColumnName(i);
+        objectNode.putPOJO(columnName, rs.getObject(i));
+      }
+      arrayNode.add(objectNode);
+    }
+
+    return arrayNode;
+  }
+
+
 
   /**
    * Closes the database connection
