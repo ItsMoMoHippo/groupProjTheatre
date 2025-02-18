@@ -26,7 +26,7 @@ public class TicketManager implements TicketSales {
     @Override
     public void recordTicketSale(String customerName, String seatNumber, float price, String venue, String dateTime) {
         try {
-            ResultSet rs = dbConnector.executeQuery("INSERT INTO tickets (Name, Seat_Number, Price, Venue, Date_Time) VALUES ('"
+            ResultSet rs = dbConnector.executeQuery("INSERT INTO tickets (Name, SeatNumber, Price, Venue, DateTime) VALUES ('"
                     + customerName + "', '" + seatNumber + "','" + price + "', '" + venue + "', '" + dateTime + "')");
             System.out.println("Ticket Recorded for" + customerName);
             fetchTicketsAsJson();
@@ -45,7 +45,7 @@ public class TicketManager implements TicketSales {
     public void updateCancellation(String customerName, String seatNumber) {
         try {
             ResultSet rs = dbConnector.executeQuery("UPDATE tickets SET cancelled = TRUE WHERE Name = '"
-                    + customerName + "' AND Seat_Number = '" + seatNumber + "'");
+                    + customerName + "' AND SeatNumber = '" + seatNumber + "'");
             System.out.println("Cancellation updated for " + customerName);
             fetchTicketsAsJson();
         } catch (SQLException e) {
@@ -62,7 +62,7 @@ public class TicketManager implements TicketSales {
     @Override
     public void updateSpecialNeeds(String customerName, String specialNeeds) {
         try {
-            ResultSet rs = dbConnector.executeQuery("UPDATE tickets SET Special_Needs = '" + specialNeeds
+            ResultSet rs = dbConnector.executeQuery("UPDATE tickets SET SpecialNeeds = '" + specialNeeds
                     + "' WHERE Name = '" + customerName + "'");
             System.out.println("Special needs updated for " + customerName);
         } catch (SQLException e) {

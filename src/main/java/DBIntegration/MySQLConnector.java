@@ -96,6 +96,7 @@ public class MySQLConnector implements MySQLInterface {
   }
 
 
+
   /**
    * Closes the database connection
    */
