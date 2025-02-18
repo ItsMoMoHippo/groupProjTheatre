@@ -3,19 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--Add Spring Boot parent -->
+    <!-- Spring Boot parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.2</version>
     </parent>
 
+    <!-- The final binary -->
     <groupId>org.example</groupId>
     <artifactId>javafx-app</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <!-- Set JavaFX version -->
+        <!-- JavaFX version -->
         <javafx.version>23.0.2</javafx.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -32,6 +33,12 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+        <!-- JDBC dependency -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.2.0</version> 
         </dependency>
         <!-- Spring Boot dependencies -->
         <dependency>

@@ -53,8 +53,8 @@ public class MySQLConnector implements MySQLInterface {
   /**
    * Updates the database
    *
-   * @param query the update to the database
-   * @return int the number of affected rows
+   * @param query        the update to the database
+   * @return ChangedRows the number of added or deleted rows
    */
   @Override
   public int executeUpdate(String query) throws SQLException {

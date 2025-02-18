@@ -7,9 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 /* mysql imports */
+import java.sql.SQLException;
 
 /* our own imports */
 import DBIntegration.*;
