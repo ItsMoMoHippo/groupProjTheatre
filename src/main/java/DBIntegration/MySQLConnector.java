@@ -8,9 +8,9 @@ import java.sql.*;
 
 public class MySQLConnector implements MySQLInterface {
 
-  private String url;
-  private String username;
-  private String password;
+  private final String url;
+  private final String username;
+  private final String password;
   private Connection connection;
 
   /**

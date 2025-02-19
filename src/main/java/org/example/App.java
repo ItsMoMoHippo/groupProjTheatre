@@ -13,7 +13,6 @@ import java.sql.SQLException;
 
 /* our own imports */
 import DBIntegration.*;
-import Seating.*;
 
 public class App extends Application {
   @Override
@@ -30,7 +29,7 @@ public class App extends Application {
   public static void main(String[] args) {
 
     // Connection with Admin creds
-    MySQLConnector db = new MySQLConnector("sst-stuproj.city.ac.uk", 3306, "in2033t07", "in2033t07_a", "Uys45GIFOX8");
+    MySQLConnector db = new MySQLConnector("in2033t07_a", "Uys45GIFOX8");
 
     try {
       db.connect();
