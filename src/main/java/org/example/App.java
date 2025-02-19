@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /* mysql imports */
 
 /* our own imports */
-import DBIntegration.*;
+import DBIntegration.InternalTeamDB.*;;
 
 public class App extends Application {
   @Override
@@ -28,16 +28,16 @@ public class App extends Application {
 
   public static void main(String[] args) {
 
-    // Connection with Admin creds
-    MySQLConnector db = new MySQLConnector("in2033t07_a", "Uys45GIFOX8");
-
-    try {
-      db.connect();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      db.close();
-    }
+    // TODO: track number of tickets sold
+    // TODO: record booking costs for meeting and rehersal rooms
+    // TODO: immediates updates with JSON
+    // TODO: collect customer reviews
+    // TODO: room booking, info on meeting rehearsal booking(booking date duration room id)
+    // TODO: recordRefund(ticketId): Records the refund of a ticket to update financial figures.
+    // TODO: getSalesSummary(showId):Totals and returns a summary of ticket sales (total tickets sold, revenue, discounts) for a particular show.
+    // TODO: anydb updates to be immediately shared
+    // TODO: JSON
+    //
 
     launch(args);
   }

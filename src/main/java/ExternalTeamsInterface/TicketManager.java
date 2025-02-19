@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-import DBIntegration.MySQLConnector;
+import DBIntegration.ExternalTeamDB.ExternalMySQLConnector;
+import org.hibernate.annotations.processing.SQL;
 
 public class TicketManager implements TicketSales {
-    private MySQLConnector dbConnector;
+    private ExternalMySQLConnector dbConnector;
 
-    public TicketManager(MySQLConnector dbConnector) {
+    public TicketManager(ExternalMySQLConnector dbConnector) {
         this.dbConnector = dbConnector;
     }
 
@@ -24,7 +25,7 @@ public class TicketManager implements TicketSales {
      * @param dateTime date and time of event
      */
     @Override
-    public void recordTicketSale(String customerName, String seatNumber, float price, String venue, String dateTime) {
+    public void recordTicketSale(String customerName, String seatNumber, float price, String venue, String dateTime) throws SQLException {
         try {
             ResultSet rs = dbConnector.executeQuery("INSERT INTO tickets (Name, SeatNumber, Price, Venue, DateTime) VALUES ('"
                     + customerName + "', '" + seatNumber + "','" + price + "', '" + venue + "', '" + dateTime + "')");
@@ -36,13 +37,13 @@ public class TicketManager implements TicketSales {
     }
 
     /**
-     * Updates tick cancellation on database, and returns JSON fetch for update
+     * Updates ticket cancellation on database, and returns JSON fetch for update
      *
      * @param customerName name of customer to query
      * @param seatNumber seat number
      */
     @Override
-    public void updateCancellation(String customerName, String seatNumber) {
+    public void updateCancellation(String customerName, String seatNumber) throws SQLException {
         try {
             ResultSet rs = dbConnector.executeQuery("UPDATE tickets SET cancelled = TRUE WHERE Name = '"
                     + customerName + "' AND SeatNumber = '" + seatNumber + "'");
@@ -60,7 +61,7 @@ public class TicketManager implements TicketSales {
      * @param specialNeeds description of special need to update table
      */
     @Override
-    public void updateSpecialNeeds(String customerName, String specialNeeds) {
+    public void updateSpecialNeeds(String customerName, String specialNeeds) throws SQLException {
         try {
             ResultSet rs = dbConnector.executeQuery("UPDATE tickets SET SpecialNeeds = '" + specialNeeds
                     + "' WHERE Name = '" + customerName + "'");
@@ -76,13 +77,36 @@ public class TicketManager implements TicketSales {
      * @return JSON data on ticket information
      */
     @Override
-    public ArrayNode fetchTicketsAsJson() {
+    public ArrayNode fetchTicketsAsJson() throws SQLException {
         try {
             ResultSet rs = dbConnector.executeQuery("SELECT * FROM tickets");
-            return dbConnector.resultSetToJson(rs);
+            return dbConnector.resultSetToJSON(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return new ObjectMapper().createArrayNode();
         }
     }
+
+    /**
+     * Shows how many tickets are sold
+     *
+     * @return ticketSold       the amount of tickets sold
+     * */
+    @Override
+    public int fetchTicketsSold() throws SQLException {
+        try {
+            ResultSet rs = dbConnector.executeQuery("SELECT COUNT(*) FROM tickets");
+            int ticketsSold = 0;
+            if (rs.next()) {
+                ticketsSold = rs.getInt(1);
+            }
+            rs.close();
+            return ticketsSold;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
 }

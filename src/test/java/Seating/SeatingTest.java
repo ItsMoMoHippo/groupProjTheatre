@@ -38,7 +38,7 @@ public class SeatingTest {
     assertEquals(true, seat.returnRestrictedView());
   }
 
-   // --------------------------------------------------------------------
+  // --------------------------------------------------------------------
   /* Ticket testing */
   @Test
   void testTicketDefaultConstructor() {
@@ -56,23 +56,26 @@ public class SeatingTest {
     assertEquals("TestShow",ticket.returnShow().getShow());
     assertEquals(0.0,ticket.returnPrice());
     assertEquals("01/01/1970",ticket.returnDatePurchased());
+    assertEquals("00:00:00", ticket.returnTimePurchased());
   }
 
   @Test
-  void testTicketParameterisedConstructor(){
-    Ticket ticket = new Ticket("1d0ij",new Seat('F',7,true),"Dave","Jones","DaveJones@email.com","15/02/2025","Hamlet",10.0,"10/02/2025");
-    assertEquals("1d0ij",ticket.returnID());
+  void testTicketParameterisedConstructor() {
+    Ticket ticket = new Ticket("1d0ij", new Seat('F', 7, true), "Dave", "Jones", "DaveJones@email.com", "15/02/2025",
+        "Hamlet", 10.0, "10/02/2025", "12:20:32");
+    assertEquals("1d0ij", ticket.returnID());
     assertNotNull(ticket.returnSeat());
-    assertEquals('F',ticket.returnSeat().returnRow());
-    assertEquals(7,ticket.returnSeat().returnNumber());
-    assertEquals(true,ticket.returnSeat().returnRestrictedView());
-    assertEquals("Dave",ticket.returnFirstName());
-    assertEquals("Jones",ticket.returnLastName());
-    assertEquals("DaveJones@email.com",ticket.returnEmail());
+    assertEquals('F', ticket.returnSeat().returnRow());
+    assertEquals(7, ticket.returnSeat().returnNumber());
+    assertEquals(true, ticket.returnSeat().returnRestrictedView());
+    assertEquals("Dave", ticket.returnFirstName());
+    assertEquals("Jones", ticket.returnLastName());
+    assertEquals("DaveJones@email.com", ticket.returnEmail());
     assertNotNull(ticket.returnShow());
-    assertEquals("15/02/2025",ticket.returnShow().getDate());
-    assertEquals("Hamlet",ticket.returnShow().getShow());
-    assertEquals(7.00,ticket.returnPrice());
-    assertEquals("10/02/2025",ticket.returnDatePurchased());
+    assertEquals("15/02/2025", ticket.returnShow().getDate());
+    assertEquals("Hamlet", ticket.returnShow().getShow());
+    assertEquals(7.00, ticket.returnPrice());
+    assertEquals("10/02/2025", ticket.returnDatePurchased());
+    assertEquals("12:20:32", ticket.returnTimePurchased());
   }
 }
