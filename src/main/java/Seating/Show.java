@@ -3,6 +3,7 @@ package Seating;
 public class Show {
   private final String date;
   private final String show;
+  private final String showID;
 
   /**
    * Test Constructor
@@ -10,6 +11,7 @@ public class Show {
   public Show() {
     this.date = "01/01/1970";
     this.show = "TestShow";
+    this.showID = "show123";
   }
 
   /**
@@ -18,9 +20,10 @@ public class Show {
    * @param date the day of the show
    * @param show the show being played
    */
-  public Show(String date, String show) {
+  public Show(String date, String show, String showID) {
     this.date = date;
     this.show = show;
+    this.showID = showID;
   }
 
   /**
@@ -38,9 +41,16 @@ public class Show {
   }
 
   /**
+   * @return showID
+   */
+  public String getShowID() {
+    return showID;
+  }
+
+  /**
    * Prints the info of a Show
    */
   public void printInfo() {
-    System.out.println("{" + date + ", " + show + "}");
+    System.out.println("{" + date + ", " + show + ", " + showID + "}");
   }
 }

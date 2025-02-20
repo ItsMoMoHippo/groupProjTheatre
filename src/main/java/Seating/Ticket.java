@@ -42,13 +42,14 @@ public class Ticket {
    * @param timePurchased the time when the ticket was purchased
    */
   public Ticket(String id, Seat seat, String firstName, String lastName, String email, String dateOfShow, String show,
+      String showID,
       double price, String datePurchased, String timePurchased) {
     this.ID = id;
     this.seat = seat;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.show = new Show(dateOfShow, show);
+    this.show = new Show(dateOfShow, show, showID);
     // apply discount if seat has restrictedView
     if (seat.returnRestrictedView()) {
       this.price = (price) * (0.7);

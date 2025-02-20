@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Deprecated
 public interface MySQLInterface {
 
   void connect() throws SQLException;

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.sql.*;
 
+@Deprecated
 public class MySQLConnector implements MySQLInterface {
 
   private final String url;
@@ -42,7 +43,7 @@ public class MySQLConnector implements MySQLInterface {
   /**
    * Executes a given query
    *
-   * @param query      the query sent to the database
+   * @param query the query sent to the database
    * @return ResultSet the resulting data returned
    */
   @Override
@@ -94,8 +95,6 @@ public class MySQLConnector implements MySQLInterface {
 
     return arrayNode;
   }
-
-
 
   /**
    * Closes the database connection

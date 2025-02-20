@@ -11,13 +11,15 @@ public class SeatingTest {
     Show show = new Show();
     assertEquals("01/01/1970", show.getDate());
     assertEquals("TestShow", show.getShow());
+    assertEquals("show123", show.getShowID());
   }
 
   @Test
   void testShowParameterisedConstructor() {
-    Show show = new Show("15/02/2025", "Hamlet");
+    Show show = new Show("15/02/2025", "Hamlet", "asd342");
     assertEquals("15/02/2025", show.getDate());
     assertEquals("Hamlet", show.getShow());
+    assertEquals("asd342", show.getShowID());
   }
 
   // --------------------------------------------------------------------
@@ -43,26 +45,26 @@ public class SeatingTest {
   @Test
   void testTicketDefaultConstructor() {
     Ticket ticket = new Ticket();
-    assertEquals("ID123",ticket.returnID());
+    assertEquals("ID123", ticket.returnID());
     assertNotNull(ticket.returnSeat());
-    assertEquals('A',ticket.returnSeat().returnRow());
-    assertEquals(1,ticket.returnSeat().returnNumber());
-    assertEquals(false,ticket.returnSeat().returnRestrictedView());
-    assertEquals("john",ticket.returnFirstName());
-    assertEquals("doe",ticket.returnLastName());
-    assertEquals("johndoe@email.com",ticket.returnEmail());
+    assertEquals('A', ticket.returnSeat().returnRow());
+    assertEquals(1, ticket.returnSeat().returnNumber());
+    assertEquals(false, ticket.returnSeat().returnRestrictedView());
+    assertEquals("john", ticket.returnFirstName());
+    assertEquals("doe", ticket.returnLastName());
+    assertEquals("johndoe@email.com", ticket.returnEmail());
     assertNotNull(ticket.returnShow());
-    assertEquals("01/01/1970",ticket.returnShow().getDate());
-    assertEquals("TestShow",ticket.returnShow().getShow());
-    assertEquals(0.0,ticket.returnPrice());
-    assertEquals("01/01/1970",ticket.returnDatePurchased());
+    assertEquals("01/01/1970", ticket.returnShow().getDate());
+    assertEquals("TestShow", ticket.returnShow().getShow());
+    assertEquals(0.0, ticket.returnPrice());
+    assertEquals("01/01/1970", ticket.returnDatePurchased());
     assertEquals("00:00:00", ticket.returnTimePurchased());
   }
 
   @Test
   void testTicketParameterisedConstructor() {
     Ticket ticket = new Ticket("1d0ij", new Seat('F', 7, true), "Dave", "Jones", "DaveJones@email.com", "15/02/2025",
-        "Hamlet", 10.0, "10/02/2025", "12:20:32");
+        "Hamlet", "asd342", 10.0, "10/02/2025", "12:20:32");
     assertEquals("1d0ij", ticket.returnID());
     assertNotNull(ticket.returnSeat());
     assertEquals('F', ticket.returnSeat().returnRow());
@@ -74,6 +76,7 @@ public class SeatingTest {
     assertNotNull(ticket.returnShow());
     assertEquals("15/02/2025", ticket.returnShow().getDate());
     assertEquals("Hamlet", ticket.returnShow().getShow());
+    assertEquals("asd342", ticket.returnShow().getShowID());
     assertEquals(7.00, ticket.returnPrice());
     assertEquals("10/02/2025", ticket.returnDatePurchased());
     assertEquals("12:20:32", ticket.returnTimePurchased());
